@@ -125,25 +125,29 @@ there. This needs real Safaricom credentials — here's the path to get there:
 access here, so please test carefully with Safaricom's sandbox numbers before
 processing real payments.
 
-## 7. Email verification (required)
+## 7. Email verification
 
-New accounts can't use any part of the app — browsing jobs, applying,
-posting, the CV builder, the profile page — until their email is verified.
-This is enforced on the **backend** (`requireVerified` in
-`middleware/auth.js`, checked fresh against the database on every request),
-not just hidden in the UI, so it can't be bypassed by calling the API directly.
+Once email sending is set up (the `SMTP_*` variables — see section 8), new
+accounts can't use any part of the app — browsing jobs, applying, posting,
+the CV builder, the profile page — until their email is verified. This is
+enforced on the **backend** (`requireVerified` in `middleware/auth.js`,
+checked fresh against the database on every request), not just hidden in the
+UI, so it can't be bypassed by calling the API directly.
 
-What happens:
-1. On registration, a verification email is sent automatically (needs SMTP
-   configured — see section 8 below. Without SMTP set up, no email goes out
-   and the account stays permanently unverified, so **set up SMTP before
-   letting real people register**).
+**If `SMTP_*` is not configured, verification is skipped automatically** —
+there'd be no way to send the link, so enforcing it would lock every new
+account out for good. It switches itself on as soon as you add SMTP
+settings (no code change). `GET /api/config` reports which mode the server
+is in (`emailVerificationRequired`).
+
+What happens when it's on:
+1. On registration, a verification email is sent automatically.
 2. The person lands on a "Verify your email" screen and stays there — they
    can resend the email or sign out, but can't reach the rest of the app.
 3. Clicking the link in the email (`GET /api/auth/verify?token=...`) marks
    them verified and shows a plain confirmation page.
 4. Set `APP_BASE_URL` in `.env` to your deployed URL — the link in the email
-   is built from this, so it won't work correctly on `localhost` once deployed.
+   is built from this.
 
 ## 8. Get notified when someone pays
 

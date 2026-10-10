@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bazzo Careers — jobs for every kind of work, worldwide</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%230A66C2%22/%3E%3Cstop offset=%221%22 stop-color=%22%233B9BF0%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%2240%22 height=%2240%22 rx=%2210%22 fill=%22url(%23g)%22/%3E%3Cpath fill=%22%23fff%22 fill-rule=%22evenodd%22 transform=%22translate(-1 .5)%22 d=%22M13 10h9.5c3.6 0 5.7 1.9 5.7 4.8 0 2-1 3.4-2.7 4.1 2.2.6 3.6 2.2 3.6 4.6 0 3.3-2.5 5.5-6.6 5.5H13zM17 13.6v4.2h4.6c1.6 0 2.5-.8 2.5-2.1s-.9-2.1-2.5-2.1zM17 21.2v5.2h5c1.8 0 2.8-1 2.8-2.6s-1-2.6-2.8-2.6z%22/%3E%3Ccircle cx=%2232%22 cy=%228.5%22 r=%223.4%22 fill=%22%23F5A623%22/%3E%3C/svg%3E">
+<style>
+  :root {
+    --blue: #0A66C2; --blue-hover: #004182; --blue-tint: #EAF4FE; --on-blue: #FFFFFF;
+    --bg: #F4F2EE; --card: #FFFFFF; --border: #E0DFDC; --text: #191919; --muted: #666666;
+    --input-bg: #EDF3F8; --input-border: #8C8C8C; --hover: rgba(0,0,0,0.05);
+    --green: #057642; --hero-title: #8F5849;
+    --ok-bg: #E8F5EE; --ok-fg: #05603F; --err-bg: #FCEBE8; --err-fg: #8A2A12; --warn-bg: #FFF4E0; --warn-fg: #7A4E00;
+    --shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.05);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --blue: #71B7FB; --blue-hover: #9BCBFC; --blue-tint: #1C2A3A; --on-blue: #0F1419;
+      --bg: #0F1419; --card: #1B1F23; --border: #38434F; --text: #E9E9E9; --muted: #A0AAB4;
+      --input-bg: #26303A; --input-border: #7A8794; --hover: rgba(255,255,255,0.07);
+      --green: #57C48F; --hero-title: #D9A899;
+      --ok-bg: #12322A; --ok-fg: #8FE0BB; --err-bg: #3A1D17; --err-fg: #F2A996; --warn-bg: #3A2E0F; --warn-fg: #F2CB7A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --blue: #71B7FB; --blue-hover: #9BCBFC; --blue-tint: #1C2A3A; --on-blue: #0F1419;
+    --bg: #0F1419; --card: #1B1F23; --border: #38434F; --text: #E9E9E9; --muted: #A0AAB4;
+    --input-bg: #26303A; --input-border: #7A8794; --hover: rgba(255,255,255,0.07);
+    --green: #57C48F; --hero-title: #D9A899;
+    --ok-bg: #12322A; --ok-fg: #8FE0BB; --err-bg: #3A1D17; --err-fg: #F2A996; --warn-bg: #3A2E0F; --warn-fg: #F2CB7A;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 64px); }
+  body {
+    margin: 0; min-height: 100%; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px; line-height: 1.4; -webkit-font-smoothing: antialiased;
+  }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea, select { font-family: inherit; font-size: 14px; color: var(--text); }
+  h1, h2, h3, p { margin: 0; }
+  .hidden { display: none !important; }
+  .muted { color: var(--muted); }
+  .screen { display: none; }
+  .screen.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow); }
+  .stack > * + * { margin-top: 8px; }
+  .ico { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+  /* buttons */
+  .btn { border-radius: 999px; font-weight: 600; font-size: 16px; padding: 10px 24px; border: 1px solid transparent; transition: background .15s, box-shadow .15s; }
+  .btn-primary { background: var(--blue); color: var(--on-blue); }
+  .btn-primary:hover { background: var(--blue-hover); }
+  .btn-outline { background: transparent; color: var(--blue); border-color: var(--blue); }
+  .btn-outline:hover { background: var(--blue-tint); box-shadow: inset 0 0 0 1px var(--blue); }
+  .btn-text { background: transparent; color: var(--muted); }
+  .btn-text:hover { background: var(--hover); color: var(--text); }
+  .btn-sm { font-size: 14px; padding: 6px 16px; }
+  .btn:disabled { opacity: .6; cursor: not-allowed; }
+  .linkbtn { background: none; border: none; color: var(--blue); font-weight: 600; font-size: 14px; padding: 0; }
+  .linkbtn:hover { text-decoration: underline; }
+
+  .avatar { border-radius: 50%; background: var(--blue); color: var(--on-blue); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+  .logo-svg { width: 36px; height: 36px; display: block; flex-shrink: 0; }
+  .brandtext { display: flex; flex-direction: column; line-height: 1; text-align: left; }
+  .brandtext b { font-size: 24px; font-weight: 800; letter-spacing: -0.03em; color: var(--blue); }
+  .brandtext small { font-size: 10px; font-weight: 700; letter-spacing: 0.32em; color: var(--muted); margin-top: 4px; }
+  .nav-brand { display: flex; align-items: center; gap: 8px; background: none; border: none; padding: 0; flex-shrink: 0; }
+
+  /* top nav */
+  .topnav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; background: var(--card); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: 1128px; margin: 0 auto; padding: 0 16px; height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .nav-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+  .nav-search { position: relative; flex: 1; max-width: 280px; }
+  .nav-search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--muted); }
+  .nav-search input { width: 100%; height: 34px; border: none; border-radius: 4px; background: var(--input-bg); padding: 0 12px 0 34px; }
+  .nav-search input:focus { outline: 2px solid var(--text); }
+  .nav-items { display: flex; align-items: stretch; height: 52px; }
+  .nav-item { background: none; border: none; border-bottom: 2px solid transparent; color: var(--muted); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 0 12px; font-size: 12px; min-width: 62px; }
+  .nav-item:hover { color: var(--text); }
+  .nav-item.active { color: var(--text); border-bottom-color: var(--text); }
+  .nav-item .ico { width: 22px; height: 22px; }
+  .nav-item .avatar { width: 22px; height: 22px; font-size: 10px; }
+
+  /* layouts */
+  .layout { max-width: 1128px; margin: 24px auto; padding: 0 16px; display: grid; gap: 24px; grid-template-columns: 225px minmax(0,1fr) 300px; align-items: start; }
+  .layout.two { grid-template-columns: 225px minmax(0,1fr); }
+  .layout.detail { grid-template-columns: minmax(0,1fr) 300px; }
+  .sticky { position: sticky; top: 76px; }
+
+  /* profile mini card */
+  .pcard { overflow: hidden; text-align: center; }
+  .banner { height: 56px; background: linear-gradient(135deg, #0A66C2, #70B5F9); }
+  .banner.big { height: 120px; }
+  .pcard .avatar { width: 68px; height: 68px; font-size: 24px; border: 2px solid var(--card); margin-top: -34px; }
+  .pcard h3 { margin: 10px 12px 2px; font-size: 16px; font-weight: 600; }
+  .pcard p { margin: 0 12px 12px; color: var(--muted); font-size: 12px; word-break: break-all; }
+  .stat-row { display: flex; justify-content: space-between; padding: 8px 16px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); cursor: pointer; text-align: left; }
+  .stat-row:hover { background: var(--hover); }
+  .stat-row b { color: var(--blue); }
+
+  /* composer */
+  .composer { padding: 12px 16px; }
+  .composer-top { display: flex; gap: 10px; align-items: center; }
+  .composer-top .avatar { width: 48px; height: 48px; font-size: 17px; }
+  .composer-btn { flex: 1; text-align: left; border: 1px solid var(--border); border-radius: 999px; background: none; color: var(--muted); padding: 14px 16px; font-size: 14px; font-weight: 600; }
+  .composer-btn:hover { background: var(--hover); }
+  .composer-actions { display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap; }
+  .chip-btn { background: none; border: none; color: var(--muted); font-weight: 600; font-size: 14px; padding: 10px 12px; border-radius: 6px; display: flex; align-items: center; gap: 8px; }
+  .chip-btn:hover { background: var(--hover); }
+  .chip-btn .ico { width: 20px; height: 20px; color: var(--blue); }
+  .feed-head { display: flex; align-items: center; gap: 8px; margin: 12px 0 4px; color: var(--muted); font-size: 12px; }
+  .feed-head::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+  /* job items */
+  .card-head { padding: 16px; border-bottom: 1px solid var(--border); }
+  .card-head h2 { font-size: 18px; font-weight: 600; }
+  .card-head p { color: var(--muted); font-size: 14px; margin-top: 2px; }
+  .card-foot { padding: 12px 16px; text-align: center; border-top: 1px solid var(--border); }
+  .job-item { display: flex; gap: 12px; padding: 16px; cursor: pointer; border-bottom: 1px solid var(--border); }
+  .job-item:last-child { border-bottom: none; }
+  .job-item:hover { background: var(--hover); }
+  .co { width: 48px; height: 48px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 18px; flex-shrink: 0; }
+  .job-body { min-width: 0; flex: 1; }
+  .job-title { color: var(--blue); font-weight: 600; font-size: 16px; margin-bottom: 2px; }
+  .job-item:hover .job-title { text-decoration: underline; }
+  .job-co { font-size: 14px; }
+  .job-sub { margin-top: 2px; color: var(--muted); font-size: 14px; }
+  .job-foot { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; font-size: 12px; color: var(--muted); }
+  .pill { font-size: 12px; padding: 2px 8px; border-radius: 999px; font-weight: 600; background: var(--blue-tint); color: var(--blue); }
+  .pay { color: var(--green); font-weight: 600; }
+  .job-snip { margin-top: 8px; font-size: 14px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .empty { padding: 40px 16px; text-align: center; color: var(--muted); }
+  .empty h3 { color: var(--text); font-size: 18px; margin-bottom: 4px; }
+
+  /* filters */
+  .filter-item { display: block; width: 100%; padding: 10px 16px; background: none; border: none; border-left: 3px solid transparent; text-align: left; font-size: 14px; color: var(--text); }
+  .filter-item:hover { background: var(--hover); }
+  .filter-item.active { border-left-color: var(--blue); color: var(--blue); font-weight: 600; background: var(--blue-tint); }
+  .qchip { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; background: var(--blue-tint); color: var(--blue); border-radius: 999px; padding: 4px 6px 4px 12px; font-size: 13px; font-weight: 600; }
+  .qchip button { background: none; border: none; color: inherit; font-size: 16px; line-height: 1; padding: 2px 6px; border-radius: 50%; }
+  .qchip button:hover { background: var(--hover); }
+
+  /* side cards */
+  .side-card { padding: 16px; }
+  .side-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .side-card p { color: var(--muted); margin-bottom: 12px; }
+  .mini-steps { margin: 0 0 4px; padding-left: 18px; color: var(--muted); }
+  .mini-steps li { margin-bottom: 4px; }
+
+  /* details */
+  .back { background: none; border: none; color: var(--muted); font-weight: 600; font-size: 14px; padding: 0 0 12px; }
+  .back:hover { color: var(--blue); }
+  .detail-head { padding: 24px; }
+  .detail-top { display: flex; gap: 16px; }
+  .detail-top .co { width: 64px; height: 64px; font-size: 24px; }
+  .detail-head h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .detail-actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  .detail-section { padding: 24px; border-top: 1px solid var(--border); }
+  .detail-section h2 { font-size: 18px; font-weight: 600; margin-bottom: 12px; }
+  .desc { white-space: pre-line; font-size: 14px; line-height: 1.65; }
+
+  /* forms */
+  .field { margin-bottom: 12px; }
+  .field label { display: block; font-size: 14px; color: var(--muted); margin-bottom: 4px; }
+  .field input, .field textarea, .field select { width: 100%; padding: 10px 12px; border: 1px solid var(--input-border); border-radius: 4px; background: var(--card); }
+  .field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--text); box-shadow: inset 0 0 0 1px var(--text); }
+  .field textarea { resize: vertical; min-height: 80px; }
+  .row2 { display: flex; gap: 12px; }
+  .row2 > * { flex: 1; min-width: 0; }
+  .notice { padding: 12px 16px; border-radius: 6px; font-size: 14px; margin-top: 12px; }
+  .notice.ok { background: var(--ok-bg); color: var(--ok-fg); }
+  .notice.err { background: var(--err-bg); color: var(--err-fg); }
+  .notice.warn { background: var(--warn-bg); color: var(--warn-fg); }
+
+  .verify-banner { background: var(--warn-bg); color: var(--warn-fg); text-align: center; padding: 10px 16px; font-size: 13px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 52px); z-index: 39; }
+  .verify-banner b { font-weight: 600; }
+  .verify-banner button { background: none; border: none; color: inherit; font-weight: 700; text-decoration: underline; padding: 0; margin-left: 10px; font-size: 13px; cursor: pointer; }
+
+  /* profile */
+  .pfull { overflow: hidden; }
+  .pbody { padding: 0 24px 20px; }
+  .avatar.xl { width: 104px; height: 104px; font-size: 36px; border: 3px solid var(--card); margin-top: -52px; }
+  .pbody h1 { font-size: 24px; font-weight: 600; margin-top: 8px; }
+
+  /* auth */
+  .auth-wrap { display: flex; flex-direction: column; align-items: center; padding: 24px 16px 48px; }
+  .auth-brand { display: flex; align-items: center; gap: 10px; margin: 8px 0 24px; cursor: pointer; background: none; border: none; }
+  .auth-brand .logo-svg { width: 42px; height: 42px; }
+  .auth-brand .brandtext b { font-size: 28px; }
+  .auth-card { width: 100%; max-width: 400px; padding: 24px 28px; }
+  .auth-card h1 { font-size: 28px; font-weight: 600; margin-bottom: 4px; }
+  .auth-card .sub { color: var(--muted); margin-bottom: 20px; }
+  .auth-card .btn { width: 100%; margin-top: 4px; }
+  .auth-alt { margin-top: 20px; text-align: center; color: var(--muted); }
+
+  /* welcome / landing */
+  .preview-bar { background: var(--blue-tint); color: var(--blue); text-align: center; padding: 8px 16px; font-size: 13px; font-weight: 600; }
+  .land-top { background: var(--card); }
+  .land-inner { max-width: 1128px; margin: 0 auto; padding: 16px; display: flex; align-items: center; justify-content: space-between; }
+  .wordmark { display: flex; align-items: center; gap: 10px; }
+  .wordmark .logo-svg { width: 46px; height: 46px; }
+  .wordmark .brandtext b { font-size: 30px; }
+  .wordmark .brandtext small { font-size: 11px; }
+  .land-actions { display: flex; gap: 8px; }
+  .land-hero { max-width: 1128px; margin: 0 auto; padding: 40px 16px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+  .land-hero h1 { font-size: 48px; line-height: 1.15; font-weight: 300; color: var(--hero-title); }
+  .land-hero p.lead { font-size: 18px; color: var(--muted); margin-top: 16px; max-width: 480px; }
+  .hero-cta { display: flex; flex-direction: column; gap: 12px; max-width: 320px; margin-top: 28px; }
+  .hero-cta .btn { padding: 14px 24px; font-size: 18px; }
+  .hero-art { width: 100%; height: auto; }
+  .about { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 48px 16px; }
+  .about-inner { max-width: 1128px; margin: 0 auto; }
+  .about h2 { font-size: 32px; font-weight: 300; color: var(--hero-title); margin-bottom: 12px; }
+  .about p.lead { max-width: 760px; font-size: 18px; }
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+  .feature { padding: 20px; }
+  .fi { width: 44px; height: 44px; border-radius: 50%; background: var(--blue-tint); color: var(--blue); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+  .feature h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .feature p { color: var(--muted); }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+  .step b { display: inline-flex; width: 28px; height: 28px; border-radius: 50%; background: var(--blue); color: var(--on-blue); align-items: center; justify-content: center; margin-bottom: 8px; }
+  .step p { color: var(--muted); }
+  .contact { padding: 48px 16px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+  .contact h2 { font-size: 32px; font-weight: 300; color: var(--hero-title); margin-bottom: 12px; }
+  .contact p.lead { font-size: 18px; color: var(--muted); max-width: 420px; }
+  .contact-card { padding: 4px 20px; }
+  .crow { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .crow:last-child { border-bottom: none; }
+  .crow .fi { width: 40px; height: 40px; margin: 0; }
+  .crow b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .crow span { color: var(--muted); }
+  .crow a { color: var(--blue); font-weight: 600; text-decoration: none; }
+  .crow a:hover { text-decoration: underline; }
+  .crow .sub { display: block; margin-top: 2px; font-size: 13px; }
+  .land-foot { max-width: 1128px; margin: 0 auto; padding: 24px 16px 40px; color: var(--muted); font-size: 12px; }
+
+  /* modals */
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: flex-start; justify-content: center; padding: 40px 16px; overflow-y: auto; z-index: 60; }
+  .overlay.open { display: flex; }
+  .modal { background: var(--card); border-radius: 8px; width: 100%; max-width: 560px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+  .modal.wide { max-width: 640px; }
+  .modal-head { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .modal-head h2 { font-size: 20px; font-weight: 600; }
+  .modal-x { background: none; border: none; font-size: 26px; line-height: 1; color: var(--muted); padding: 2px 10px; border-radius: 50%; }
+  .modal-x:hover { background: var(--hover); }
+  .modal-body { padding: 20px 24px; }
+  .modal-foot { padding: 4px 24px 20px; display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+  .cv-result { background: var(--input-bg); border: 1px solid var(--border); border-radius: 6px; padding: 16px; white-space: pre-wrap; max-height: 50vh; overflow: auto; font-size: 14px; line-height: 1.6; }
+  .loading { display: flex; align-items: center; gap: 10px; color: var(--muted); padding: 32px 0; justify-content: center; }
+  .spinner { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); border-top-color: var(--blue); animation: spin .7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  #toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(20px); background: #191919; color: #fff; padding: 10px 18px; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 80; font-size: 14px; max-width: 90vw; }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 960px) {
+    .layout, .layout.two, .layout.detail { grid-template-columns: minmax(0,1fr); }
+    .hide-tablet { display: none; }
+    .sticky { position: static; }
+    .land-hero { grid-template-columns: 1fr; }
+    .land-hero h1 { font-size: 36px; }
+    .features { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 720px) {
+    .nav-items { position: fixed; left: 0; right: 0; bottom: 0; height: auto; background: var(--card); border-top: 1px solid var(--border); justify-content: space-around; padding-bottom: env(safe-area-inset-bottom, 0px); z-index: 40; }
+    .nav-item { flex: 1; min-width: 0; padding: 6px 2px; border-bottom: none; border-top: 2px solid transparent; font-size: 11px; }
+    .nav-item.active { border-top-color: var(--text); }
+    .hide-mobile { display: none; }
+    body.authed .layout { padding-bottom: 72px; }
+    body.authed #toast { bottom: 84px; }
+    .row2 { flex-direction: column; gap: 0; }
+    .auth-card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Bazzo Careers logo: rounded gradient badge, bold "B", amber "opportunity" dot -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs><linearGradient id="bzGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A66C2"/><stop offset="1" stop-color="#3B9BF0"/></linearGradient></defs>
+  <symbol id="bazzo-mark" viewBox="0 0 40 40">
+    <rect width="40" height="40" rx="10" fill="url(#bzGrad)"/>
+    <path fill="#fff" fill-rule="evenodd" transform="translate(-1 .5)" d="M13 10h9.5c3.6 0 5.7 1.9 5.7 4.8 0 2-1 3.4-2.7 4.1 2.2.6 3.6 2.2 3.6 4.6 0 3.3-2.5 5.5-6.6 5.5H13zM17 13.6v4.2h4.6c1.6 0 2.5-.8 2.5-2.1s-.9-2.1-2.5-2.1zM17 21.2v5.2h5c1.8 0 2.8-1 2.8-2.6s-1-2.6-2.8-2.6z"/>
+    <circle cx="32" cy="8.5" r="3.4" fill="#F5A623"/>
+  </symbol>
+</svg>
+
+<!-- TOP NAV (signed-in screens only) -->
+<header class="topnav hidden" id="topnav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <button class="nav-brand" data-go="home" aria-label="Bazzo Careers home"><svg class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><use href="#bazzo-mark"/></svg><span class="brandtext hide-tablet"><b>Bazzo</b><small>CAREERS</small></span></button>
+      <div class="nav-search">
+        <svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="navSearch" type="text" placeholder="Search jobs, companies, places" aria-label="Search jobs">
+      </div>
+    </div>
+    <nav class="nav-items">
+      <button class="nav-item" data-go="home"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></button>
+      <button class="nav-item" data-go="jobs"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg><span>Jobs</span></button>
+      <button class="nav-item" data-act="post"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg><span>Post</span></button>
+      <button class="nav-item" data-act="cv"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span>AI CV</span></button>
+      <button class="nav-item" data-go="profile"><span class="avatar" data-user-initials>?</span><span>Me</span></button>
+      <button class="nav-item hide-mobile" data-act="logout"><svg class="ico" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg><span>Sign out</span></button>
+    </nav>
+  </div>
+</header>
+
+<!-- VERIFY GATE: shown instead of the app until the email is confirmed -->
+<section class="screen" id="screen-verify">
+  <div class="auth-wrap">
+    <button class="auth-brand" data-act="logout" aria-label="Bazzo Careers">
+      <svg class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><use href="#bazzo-mark"/></svg>
+      <span class="brandtext"><b>Bazzo</b><small>CAREERS</small></span>
+    </button>
+    <div class="card auth-card" style="text-align:center;">
+      <div class="fi" style="margin:0 auto 16px;"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+      <h1 style="font-size:22px;">Verify your email</h1>
+      <p class="sub">We sent a link to <b data-user-email></b>. Open it to unlock Bazzo Careers — browsing, applying, posting jobs, and your profile all need a verified email first.</p>
+      <div class="notice hidden" id="verifyMsg" style="text-align:left;"></div>
+      <button class="btn btn-primary" id="resendVerify" style="width:100%;margin-top:8px;">Resend verification email</button>
+      <button class="btn btn-text" id="verifyCheck" style="width:100%;margin-top:4px;">I've verified — refresh</button>
+      <p class="auth-alt"><button class="linkbtn" data-act="logout">Sign out</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- 1. WELCOME -->
+<section class="screen" id="screen-welcome">
+  <div class="preview-bar hidden" id="previewBar">Preview mode — demo data only. Accounts and jobs live in this tab and reset on reload. The downloadable app uses a real database.</div>
+  <div class="land-top">
+    <div class="land-inner">
+      <div class="wordmark"><svg class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><use href="#bazzo-mark"/></svg><span class="brandtext"><b>Bazzo</b><small>CAREERS</small></span></div>
+      <div class="land-actions">
+        <button class="btn btn-text" data-auth="register">Join now</button>
+        <button class="btn btn-outline" data-auth="login">Sign in</button>
+      </div>
+    </div>
+  </div>
+  <div class="land-hero">
+    <div>
+      <h1>Find work that fits your life — anywhere in the world</h1>
+      <p class="lead">Office jobs, gigs, trades, hospitality and remote roles, all in one place.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" data-auth="register">Join Bazzo Careers — it's free</button>
+        <button class="btn btn-outline" data-auth="login">Sign in</button>
+      </div>
+    </div>
+    <svg class="hero-art" viewBox="0 0 420 320" aria-hidden="true">
+      <rect x="20" y="20" width="290" height="92" rx="10" fill="var(--card)" stroke="var(--border)"/>
+      <rect x="38" y="38" width="48" height="48" rx="6" fill="#0A66C2"/>
+      <rect x="102" y="42" width="140" height="11" rx="5" fill="var(--blue)"/>
+      <rect x="102" y="62" width="100" height="9" rx="4" fill="var(--muted)" opacity=".5"/>
+      <rect x="102" y="80" width="56" height="14" rx="7" fill="var(--blue-tint)"/>
+      <rect x="110" y="122" width="290" height="92" rx="10" fill="var(--card)" stroke="var(--border)"/>
+      <rect x="128" y="140" width="48" height="48" rx="6" fill="#057642"/>
+      <rect x="192" y="144" width="150" height="11" rx="5" fill="var(--blue)"/>
+      <rect x="192" y="164" width="110" height="9" rx="4" fill="var(--muted)" opacity=".5"/>
+      <rect x="192" y="182" width="64" height="14" rx="7" fill="var(--blue-tint)"/>
+      <rect x="20" y="224" width="290" height="80" rx="10" fill="var(--card)" stroke="var(--border)"/>
+      <rect x="38" y="240" width="48" height="48" rx="6" fill="#915907"/>
+      <rect x="102" y="246" width="130" height="11" rx="5" fill="var(--blue)"/>
+      <rect x="102" y="266" width="90" height="9" rx="4" fill="var(--muted)" opacity=".5"/>
+    </svg>
+  </div>
+  <div class="about about-pad">
+    <div class="about-inner">
+      <h2>About Bazzo Careers</h2>
+      <p class="lead">Bazzo Careers is a worldwide job marketplace that connects people with every kind of opportunity. Create a free account, browse and apply to jobs, post openings if you're hiring, and let AI help you write a professional CV.</p>
+      <p class="lead muted" id="feeNote" style="font-size:14px;"></p>
+      <div class="features">
+        <div class="card feature"><div class="fi"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></div><h3>Every kind of work</h3><p>From office roles to gigs, trades, hospitality and remote jobs, across countries.</p></div>
+        <div class="card feature"><div class="fi"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div><h3>Apply in one step</h3><p>Open a job, read the details, and apply straight from your profile.</p></div>
+        <div class="card feature"><div class="fi"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></div><h3>AI CV builder</h3><p>Tell it about your experience and get a clean, ready-to-edit CV draft.</p></div>
+      </div>
+      <div class="steps">
+        <div class="step"><b>1</b><p>Join or sign in</p></div>
+        <div class="step"><b>2</b><p>Explore jobs on your home feed</p></div>
+        <div class="step"><b>3</b><p>Open a job to see details and apply</p></div>
+        <div class="step"><b>4</b><p>Track your activity on your profile</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="contact">
+    <div class="about-inner contact-grid">
+      <div>
+        <h2>Contact &amp; location</h2>
+        <p class="lead">Questions, partnerships, or want your company listed? Reach the Bazzo Careers team.</p>
+      </div>
+      <div class="card contact-card">
+        <div class="crow" data-row="address"><div class="fi"><svg class="ico" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><b>Office</b><span data-biz="address"></span><span class="sub"><a data-biz-link="maps">Open in Google Maps</a></span></div></div>
+        <div class="crow" data-row="email"><div class="fi"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><div><b>Email</b><a data-biz-link="mail" data-biz="email"></a></div></div>
+        <div class="crow" data-row="phone"><div class="fi"><svg class="ico" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div><div><b>Phone</b><a data-biz-link="tel" data-biz="phone"></a></div></div>
+        <div class="crow" data-row="hours"><div class="fi"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><b>Hours</b><span data-biz="hours"></span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="land-foot">Bazzo Careers © 2026 — jobs for every kind of work, worldwide. · <span data-biz="address"></span></div>
+</section>
+
+<!-- 2. SIGN IN / JOIN -->
+<section class="screen" id="screen-auth">
+  <div class="auth-wrap">
+    <button class="auth-brand" data-go="welcome" aria-label="Bazzo Careers"><svg class="logo-svg" viewBox="0 0 40 40" aria-hidden="true"><use href="#bazzo-mark"/></svg><span class="brandtext"><b>Bazzo</b><small>CAREERS</small></span></button>
+    <div class="card auth-card">
+      <h1 id="authTitle">Sign in</h1>
+      <p class="sub" id="authSub">Welcome back to your job community.</p>
+      <div class="field hidden" id="authNameField"><label for="authName">Full name</label><input id="authName" type="text" autocomplete="name"></div>
+      <div class="field"><label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email"></div>
+      <div class="field"><label for="authPass">Password</label><input id="authPass" type="password" autocomplete="current-password"></div>
+      <div class="notice err hidden" id="authError"></div>
+      <button class="btn btn-primary" id="authSubmit" style="margin-top:16px;">Sign in</button>
+      <p class="auth-alt"><span id="authAltText">New to Bazzo?</span> <button class="linkbtn" id="authAltBtn">Join now</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. HOME DASHBOARD -->
+<main class="screen" id="screen-home">
+  <div class="layout">
+    <aside class="hide-tablet stack">
+      <div class="card pcard">
+        <div class="banner"></div>
+        <span class="avatar" data-user-initials>?</span>
+        <h3 data-user-name></h3>
+        <p data-user-email></p>
+        <div class="stat-row" data-go="profile"><span>Applications</span><b data-count="applications">0</b></div>
+        <div class="stat-row" data-go="profile"><span>Jobs you posted</span><b data-count="posted">0</b></div>
+      </div>
+    </aside>
+    <section>
+      <div class="card composer">
+        <div class="composer-top">
+          <span class="avatar" data-user-initials>?</span>
+          <button class="composer-btn" data-act="post">Hiring? Post a job or opportunity…</button>
+        </div>
+        <div class="composer-actions">
+          <button class="chip-btn" data-go="jobs"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg>Browse jobs</button>
+          <button class="chip-btn" data-act="cv"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Build CV with AI</button>
+          <button class="chip-btn" data-go="profile"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>My profile</button>
+        </div>
+      </div>
+      <div class="feed-head">Welcome back, <span data-first-name></span> · latest opportunities</div>
+      <div class="card">
+        <div id="feedList"></div>
+        <div class="card-foot"><button class="linkbtn" data-go="jobs">Show all jobs →</button></div>
+      </div>
+    </section>
+    <aside class="stack">
+      <div class="card side-card">
+        <h3>About Bazzo Careers</h3>
+        <p>A worldwide marketplace connecting people with every kind of work — office, gigs, trades, hospitality and remote.</p>
+        <ol class="mini-steps"><li>Explore jobs</li><li>Open one for the details</li><li>Apply, then track it on your profile</li></ol>
+      </div>
+      <div class="card side-card">
+        <h3>Need a CV?</h3>
+        <p>Answer a few questions and AI drafts a clean CV for the role you want.</p>
+        <button class="btn btn-outline btn-sm" data-act="cv">Build my CV</button>
+      </div>
+      <div class="card side-card">
+        <h3>Contact Bazzo Careers</h3>
+        <p data-biz="address"></p>
+        <a class="linkbtn" data-biz-link="mail">Email the team</a>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- 4. MAIN SERVICES: JOBS -->
+<main class="screen" id="screen-jobs">
+  <div class="layout two">
+    <aside>
+      <div class="card sticky">
+        <div class="card-head"><h2 style="font-size:16px;">Categories</h2></div>
+        <div id="filterList"></div>
+      </div>
+    </aside>
+    <section class="card">
+      <div class="card-head">
+        <h2>Jobs for you</h2>
+        <p id="jobsCount"></p>
+        <div class="qchip hidden" id="queryChip">Results for “<span></span>” <button id="clearQuery" aria-label="Clear search">×</button></div>
+      </div>
+      <div id="jobList"></div>
+    </section>
+  </div>
+</main>
+
+<!-- 5. JOB DETAILS -->
+<main class="screen" id="screen-details">
+  <div class="layout detail">
+    <section>
+      <button class="back" data-go="jobs">← Back to jobs</button>
+      <div class="card" id="detailMain"></div>
+    </section>
+    <aside id="detailSide"></aside>
+  </div>
+</main>
+
+<!-- 6. PROFILE -->
+<main class="screen" id="screen-profile">
+  <div class="layout detail">
+    <section class="stack">
+      <div class="card pfull">
+        <div class="banner big"></div>
+        <div class="pbody">
+          <span class="avatar xl" data-user-initials>?</span>
+          <h1 data-user-name></h1>
+          <p class="muted" data-user-email></p>
+          <p class="muted" style="margin-top:4px;">Bazzo member</p>
+        </div>
+      </div>
+      <div class="card"><div class="card-head"><h2>Jobs you've posted</h2></div><div id="postedList"></div></div>
+      <div class="card"><div class="card-head"><h2>Your applications</h2></div><div id="appsList"></div></div>
+    </section>
+    <aside class="stack">
+      <div class="card side-card">
+        <h3>Quick actions</h3>
+        <p>Keep things moving.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <button class="btn btn-primary btn-sm" data-act="post">Post a job</button>
+          <button class="btn btn-outline btn-sm" data-act="cv">Build CV with AI</button>
+          <button class="btn btn-outline btn-sm" data-act="logout">Sign out</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- MODAL: post a job -->
+<div class="overlay" id="postOverlay">
+  <div class="modal">
+    <div class="modal-head"><h2>Post a job</h2><button class="modal-x" data-close="postOverlay" aria-label="Close">×</button></div>
+    <div class="modal-body">
+      <div class="field"><label for="pTitle">Job title</label><input id="pTitle" type="text" placeholder="e.g. Delivery rider, Sous chef, Frontend engineer"></div>
+      <div class="field"><label for="pCompany">Company / hirer</label><input id="pCompany" type="text"></div>
+      <div class="row2">
+        <div class="field"><label for="pLocation">Location</label><input id="pLocation" type="text" placeholder="e.g. Nairobi, Kenya or Remote"></div>
+        <div class="field"><label for="pCategory">Category</label><select id="pCategory"></select></div>
+      </div>
+      <div class="field"><label for="pPay">Pay (optional)</label><input id="pPay" type="text" placeholder="e.g. KES 45,000/mo or Negotiable"></div>
+      <div class="field"><label for="pDesc">Description</label><textarea id="pDesc" placeholder="What is the job, and what should someone bring to it?"></textarea></div>
+      <div class="notice err hidden" id="postError"></div>
+    </div>
+    <div class="modal-foot"><button class="btn btn-primary" id="submitPost">Post job</button></div>
+  </div>
+</div>
+
+<!-- MODAL: AI CV builder -->
+<div class="overlay" id="cvOverlay">
+  <div class="modal wide">
+    <div class="modal-head"><h2>Build my CV with AI</h2><button class="modal-x" data-close="cvOverlay" aria-label="Close">×</button></div>
+    <div class="modal-body">
+      <div id="cvForm">
+        <p class="muted" style="margin-bottom:12px;">Tell it about your experience and target role. It only uses what you write — nothing is invented.</p>
+        <div class="notice ok hidden" id="previewNote" style="margin:0 0 12px;">Preview mode: this builds a plain template from your answers. The deployed app uses Claude to write it.</div>
+        <div class="row2">
+          <div class="field"><label for="cvName">Your name</label><input id="cvName" type="text"></div>
+          <div class="field"><label for="cvRole">Role you're applying for</label><input id="cvRole" type="text" placeholder="e.g. Customer Support Agent"></div>
+        </div>
+        <div class="field"><label for="cvExperience">Work experience</label><textarea id="cvExperience" style="min-height:110px;" placeholder="Past jobs, what you did, roughly how long — one per line is fine."></textarea></div>
+        <div class="row2">
+          <div class="field"><label for="cvEducation">Education (optional)</label><input id="cvEducation" type="text"></div>
+          <div class="field"><label for="cvSkills">Key skills (optional)</label><input id="cvSkills" type="text"></div>
+        </div>
+        <div class="field"><label for="cvNotes">Anything else? (optional)</label><textarea id="cvNotes" placeholder="Tone, achievements to highlight, languages spoken…"></textarea></div>
+        <div class="notice err hidden" id="cvError"></div>
+      </div>
+      <div id="cvLoading" class="loading hidden"><div class="spinner"></div>Writing your CV…</div>
+      <div id="cvResult" class="hidden"><div class="cv-result" id="cvResultText"></div></div>
+    </div>
+    <div class="modal-foot" id="cvFootForm"><button class="btn btn-primary" id="cvGenerate">Generate CV</button></div>
+    <div class="modal-foot hidden" id="cvFootResult">
+      <button class="btn btn-outline" id="cvBack">Edit answers</button>
+      <button class="btn btn-outline" id="cvDownload">Download .txt</button>
+      <button class="btn btn-primary" id="cvCopy">Copy text</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" role="status"></div>
+
+<script>
+// <API-LAYER>
+const PREVIEW = false;
+// Same-origin by default (the Express app serves this page).
+// If you host this page separately, set API_BASE to your API's full URL,
+// e.g. 'https://bazzo-api.onrender.com/api'.
+const API_BASE = '/api';
+
+async function api(path, opts = {}) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (token) headers.Authorization = 'Bearer ' + token;
+  const res = await fetch(API_BASE + path, {
+    method: opts.method || 'GET',
+    headers,
+    body: opts.body ? JSON.stringify(opts.body) : undefined,
+  });
+  let data = null;
+  try { data = await res.json(); } catch (e) { /* non-JSON response */ }
+  if (!res.ok) {
+    const err = new Error((data && data.error) || 'Request failed (' + res.status + ').');
+    err.status = res.status;
+    if (res.status === 401 && token && !path.startsWith('/auth/')) {
+      setTimeout(() => logout('Your session expired — please sign in again.'), 0);
+    }
+    if (res.status === 403 && data && data.code === 'EMAIL_NOT_VERIFIED') {
+      if (currentUser) currentUser.emailVerified = false;
+      appConfig.emailVerificationRequired = true;
+      setTimeout(() => go('verify'), 0);
+    }
+    throw err;
+  }
+  return data;
+}
+// </API-LAYER>
+
+/* ---------- helpers ---------- */
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const CATEGORIES = [
+  { id: 'office', label: 'Office & corporate' },
+  { id: 'gig', label: 'Gig & freelance' },
+  { id: 'trade', label: 'Trades & manual' },
+  { id: 'remote', label: 'Remote' },
+  { id: 'hospitality', label: 'Hospitality & retail' },
+];
+const catLabel = (id) => (CATEGORIES.find((c) => c.id === id) || { label: id }).label;
+const AV_COLORS = ['#0A66C2', '#915907', '#057642', '#7A3E9D', '#B24020', '#0E7C86', '#5F6B7A'];
+function avatarFor(company) {
+  const name = String(company || '?').trim();
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
+  return { initial: (name.charAt(0) || '?').toUpperCase(), color: AV_COLORS[h % AV_COLORS.length] };
+}
+const initials = (name) => String(name || '').trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join('').toUpperCase() || '?';
+function ago(iso) {
+  if (!iso) return '';
+  const t = new Date(iso).getTime();
+  if (isNaN(t)) return '';
+  const s = Math.max(0, (Date.now() - t) / 1000);
+  if (s < 3600) return Math.max(1, Math.floor(s / 60)) + 'm ago';
+  if (s < 86400) return Math.floor(s / 3600) + 'h ago';
+  const d = Math.floor(s / 86400);
+  return d < 30 ? d + 'd ago' : Math.floor(d / 30) + 'mo ago';
+}
+let toastTimer;
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+/* ---------- business details (edit these!) ---------- */
+// Shown in the "Contact & location" section, the footer and the home sidebar.
+// Set any value to '' to hide it. Email, phone and hours below are PLACEHOLDERS.
+const BUSINESS = {
+  address: 'Nairobi, Kenya',
+  email: 'hello@bazzocareers.com',
+  phone: '+254 710 929 595',
+  hours: '',
+};
+function renderBusiness() {
+  const maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(BUSINESS.address);
+  document.querySelectorAll('[data-biz]').forEach((e) => { e.textContent = BUSINESS[e.dataset.biz] || ''; });
+  document.querySelectorAll('[data-biz-link]').forEach((a) => {
+    const k = a.dataset.bizLink;
+    if (k === 'maps') { a.href = maps; a.target = '_blank'; a.rel = 'noopener'; }
+    if (k === 'mail') a.href = 'mailto:' + BUSINESS.email;
+    if (k === 'tel') a.href = 'tel:' + String(BUSINESS.phone).replace(/[^+\d]/g, '');
+  });
+  document.querySelectorAll('[data-row]').forEach((r) => r.classList.toggle('hidden', !BUSINESS[r.dataset.row]));
+}
+
+/* ---------- state ---------- */
+let appConfig = { applicationFeeKes: 0, emailVerificationRequired: false };
+let token = null;
+try { token = localStorage.getItem('bazzo_token'); } catch (e) { /* storage unavailable */ }
+let currentUser = null;
+let currentScreen = 'welcome';
+let currentJob = null;
+let feedCache = [];
+let jobsCache = [];
+let profileData = { postedJobs: [], applications: [] };
+let activeFilter = null;
+let query = '';
+let loadToken = 0;
+const jobIndex = {};
+const indexJobs = (list) => list.forEach((j) => { jobIndex[j.id] = j; });
+
+function setToken(t) {
+  token = t;
+  try { t ? localStorage.setItem('bazzo_token', t) : localStorage.removeItem('bazzo_token'); } catch (e) { /* ignore */ }
+}
+
+/* ---------- navigation ---------- */
+const SCREENS = ['welcome', 'auth', 'verify', 'home', 'jobs', 'details', 'profile'];
+const APP_SCREENS = ['home', 'jobs', 'details', 'profile'];
+function go(name) {
+  if ((APP_SCREENS.includes(name) || name === 'verify') && !currentUser) name = 'welcome';
+  // Hard gate: an unverified account cannot reach any part of the app — the
+  // backend enforces this too (requireVerified), this just avoids a round
+  // trip of failed requests and shows the right screen immediately.
+  const mustVerify = appConfig.emailVerificationRequired && currentUser && currentUser.emailVerified === false;
+  if (APP_SCREENS.includes(name) && mustVerify) name = 'verify';
+  if (currentUser && !mustVerify && name === 'verify') name = 'home';
+  if (name === 'details' && !currentJob) name = 'jobs';
+  currentScreen = name;
+  SCREENS.forEach((s) => $('screen-' + s).classList.toggle('active', s === name));
+  fillUser();
+  const authed = !!currentUser;
+  $('topnav').classList.toggle('hidden', !authed || !APP_SCREENS.includes(name));
+  document.body.classList.toggle('authed', authed && APP_SCREENS.includes(name));
+  document.querySelectorAll('.nav-item[data-go]').forEach((b) => {
+    b.classList.toggle('active', b.dataset.go === name || (name === 'details' && b.dataset.go === 'jobs'));
+  });
+  window.scrollTo(0, 0);
+  if (name === 'home') loadHome();
+  if (name === 'jobs') fetchJobs();
+  if (name === 'profile') loadProfile();
+}
+
+function fillUser() {
+  const u = currentUser;
+  if (!u) return;
+  document.querySelectorAll('[data-user-initials]').forEach((e) => { e.textContent = initials(u.name); });
+  document.querySelectorAll('[data-user-name]').forEach((e) => { e.textContent = u.name; });
+  document.querySelectorAll('[data-user-email]').forEach((e) => { e.textContent = u.email; });
+  document.querySelectorAll('[data-first-name]').forEach((e) => { e.textContent = String(u.name).split(' ')[0]; });
+}
+function fillCounts() {
+  document.querySelectorAll('[data-count="applications"]').forEach((e) => { e.textContent = profileData.applications.length; });
+  document.querySelectorAll('[data-count="posted"]').forEach((e) => { e.textContent = profileData.postedJobs.length; });
+}
+async function refreshProfileCounts() {
+  try { profileData = await api('/profile'); } catch (e) { return; }
+  fillCounts();
+}
+
+/* ---------- auth ---------- */
+let authMode = 'login';
+function setAuthMode(m) {
+  authMode = m;
+  const reg = m === 'register';
+  $('authTitle').textContent = reg ? 'Join Bazzo Careers' : 'Sign in';
+  $('authSub').textContent = reg ? 'Find work of every kind — it is free.' : 'Welcome back to your job community.';
+  $('authNameField').classList.toggle('hidden', !reg);
+  $('authSubmit').textContent = reg ? 'Agree & join' : 'Sign in';
+  $('authAltText').textContent = reg ? 'Already on Bazzo?' : 'New to Bazzo?';
+  $('authAltBtn').textContent = reg ? 'Sign in' : 'Join now';
+  $('authPass').autocomplete = reg ? 'new-password' : 'current-password';
+  $('authError').classList.add('hidden');
+}
+function showAuthError(msg) {
+  const e = $('authError');
+  e.textContent = msg;
+  e.classList.remove('hidden');
+}
+async function submitAuth() {
+  const name = $('authName').value.trim();
+  const email = $('authEmail').value.trim();
+  const password = $('authPass').value;
+  const reg = authMode === 'register';
+  $('authError').classList.add('hidden');
+  if (reg && !name) return showAuthError('Enter your name.');
+  if (!email || !password) return showAuthError('Enter your email and password.');
+  if (reg && password.length < 8) return showAuthError('Password must be at least 8 characters.');
+  const btn = $('authSubmit');
+  btn.disabled = true;
+  try {
+    const data = await api(reg ? '/auth/register' : '/auth/login', {
+      method: 'POST',
+      body: reg ? { name, email, password } : { email, password },
+    });
+    setToken(data.token);
+    currentUser = data.user;
+    $('authPass').value = '';
+    fillUser();
+    toast(reg ? (appConfig.emailVerificationRequired ? "Welcome! Check your email (" + currentUser.email + ") to verify your account." : 'Welcome to Bazzo Careers, ' + String(currentUser.name).split(' ')[0] + '!') : 'Welcome back, ' + String(currentUser.name).split(' ')[0] + '!');
+    go('home');
+  } catch (e) {
+    showAuthError(e.message);
+  } finally {
+    btn.disabled = false;
+  }
+}
+function logout(msg) {
+  setToken(null);
+  currentUser = null;
+  currentJob = null;
+  feedCache = [];
+  jobsCache = [];
+  profileData = { postedJobs: [], applications: [] };
+  go('welcome');
+  if (msg) toast(msg);
+}
+
+/* ---------- job rendering ---------- */
+function jobItemHtml(j, snippet) {
+  const av = avatarFor(j.company);
+  const time = ago(j.created_at);
+  return '<div class="job-item" data-id="' + esc(j.id) + '">' +
+    '<div class="co" style="background:' + av.color + '">' + esc(av.initial) + '</div>' +
+    '<div class="job-body">' +
+      '<p class="job-title">' + esc(j.title) + '</p>' +
+      '<p class="job-co">' + esc(j.company) + '</p>' +
+      '<p class="job-sub">' + esc(j.location) + '</p>' +
+      '<div class="job-foot"><span class="pill">' + esc(catLabel(j.category)) + '</span>' +
+        (j.pay ? '<span class="pay">' + esc(j.pay) + '</span>' : '') +
+        (time ? '<span>' + esc(time) + '</span>' : '') + '</div>' +
+      (snippet && j.description ? '<p class="job-snip">' + esc(j.description) + '</p>' : '') +
+    '</div></div>';
+}
+function simpleRowHtml(id, title, company, sub) {
+  const av = avatarFor(company);
+  return '<div class="job-item" data-id="' + esc(id) + '">' +
+    '<div class="co" style="background:' + av.color + '">' + esc(av.initial) + '</div>' +
+    '<div class="job-body"><p class="job-title">' + esc(title) + '</p><p class="job-co">' + esc(company) + '</p>' +
+    '<p class="job-sub">' + esc(sub) + '</p></div></div>';
+}
+
+/* ---------- home ---------- */
+async function loadHome() {
+  fillUser();
+  fillCounts();
+  try { currentUser = (await api('/auth/me')).user; fillUser(); } catch (e) { /* keep what we had */ }
+  const list = $('feedList');
+  if (!feedCache.length) list.innerHTML = '<div class="empty">Loading opportunities…</div>';
+  try {
+    feedCache = await api('/jobs');
+    indexJobs(feedCache);
+    list.innerHTML = feedCache.slice(0, 8).map((j) => jobItemHtml(j, true)).join('') ||
+      '<div class="empty"><h3>No jobs yet</h3><p>Be the first to post one.</p></div>';
+  } catch (e) {
+    list.innerHTML = '<div class="empty"><h3>Couldn’t load jobs</h3><p>' + esc(e.message) + '</p></div>';
+  }
+  refreshProfileCounts();
+}
+
+/* ---------- jobs (main services) ---------- */
+function renderFilters() {
+  const items = [{ id: '', label: 'All jobs' }].concat(CATEGORIES);
+  $('filterList').innerHTML = items.map((c) =>
+    '<button class="filter-item' + ((activeFilter || '') === c.id ? ' active' : '') + '" data-filter="' + c.id + '">' + esc(c.label) + '</button>'
+  ).join('');
+}
+async function fetchJobs() {
+  const my = ++loadToken;
+  renderFilters();
+  const params = new URLSearchParams();
+  if (query.trim()) params.set('q', query.trim());
+  if (activeFilter) params.set('category', activeFilter);
+  const list = $('jobList');
+  list.innerHTML = '<div class="empty">Loading jobs…</div>';
+  try {
+    const jobs = await api('/jobs' + (params.toString() ? '?' + params.toString() : ''));
+    if (my !== loadToken) return;
+    jobsCache = jobs;
+    indexJobs(jobs);
+    renderJobs();
+  } catch (e) {
+    if (my !== loadToken) return;
+    list.innerHTML = '<div class="empty"><h3>Couldn’t load jobs</h3><p>' + esc(e.message) + '</p></div>';
+  }
+}
+function renderJobs() {
+  renderFilters();
+  $('jobsCount').textContent = jobsCache.length + (jobsCache.length === 1 ? ' job' : ' jobs') + (activeFilter ? ' in ' + catLabel(activeFilter) : '');
+  const q = query.trim();
+  $('queryChip').classList.toggle('hidden', !q);
+  $('queryChip').querySelector('span').textContent = q;
+  $('jobList').innerHTML = jobsCache.length
+    ? jobsCache.map((j) => jobItemHtml(j, true)).join('')
+    : '<div class="empty"><h3>No matching jobs</h3><p>Try a different keyword or category.</p></div>';
+}
+
+/* ---------- details ---------- */
+async function openJobById(id) {
+  let job = jobIndex[id];
+  if (!job) {
+    try { job = await api('/jobs/' + encodeURIComponent(id)); indexJobs([job]); }
+    catch (e) { toast(e.message); return; }
+  }
+  openJob(job);
+}
+function openJob(job) {
+  currentJob = job;
+  const av = avatarFor(job.company);
+  const time = ago(job.created_at);
+  $('detailMain').innerHTML =
+    '<div class="detail-head"><div class="detail-top">' +
+      '<div class="co" style="background:' + av.color + '">' + esc(av.initial) + '</div>' +
+      '<div><h1>' + esc(job.title) + '</h1><p class="job-co">' + esc(job.company) + '</p>' +
+      '<p class="job-sub">' + esc(job.location) + (time ? ' · ' + esc(time) : '') + '</p>' +
+      '<div class="job-foot"><span class="pill">' + esc(catLabel(job.category)) + '</span>' + (job.pay ? '<span class="pay">' + esc(job.pay) + '</span>' : '') + '</div></div>' +
+    '</div><div class="detail-actions"><button class="btn btn-primary" id="applyOpen">Apply</button>' +
+    '<button class="btn btn-outline" data-go="jobs">Back to jobs</button></div></div>' +
+    '<div class="detail-section hidden" id="applySection"></div>' +
+    '<div class="detail-section"><h2>About the job</h2><div class="desc">' + esc(job.description || 'No description provided.') + '</div></div>';
+
+  const fee = appConfig.applicationFeeKes;
+  function renderApplyForm() {
+    $('applySection').innerHTML =
+      '<h2>Apply to ' + esc(job.company) + '</h2>' +
+      (fee > 0 ? '<div class="notice ok">Applying costs <b>KES ' + fee + '</b>, paid via M-Pesa. You\'ll get a prompt on your phone to enter your PIN.</div>' : '') +
+      '<div class="field"><label for="appName">Full name</label><input id="appName" type="text" value="' + esc(currentUser.name) + '"></div>' +
+      '<div class="field"><label for="appEmail">Email</label><input id="appEmail" type="email" value="' + esc(currentUser.email) + '"></div>' +
+      (fee > 0 ? '<div class="field"><label for="appPhone">M-Pesa phone number</label><input id="appPhone" type="tel" placeholder="e.g. 0712345678"></div>' : '') +
+      '<div class="field"><label for="appNote">Why you’re a good fit (optional)</label><textarea id="appNote"></textarea></div>' +
+      '<button class="btn btn-primary" id="appSubmit">' + (fee > 0 ? 'Pay KES ' + fee + ' & apply' : 'Submit application') + '</button><div id="appMsg"></div>';
+    $('appSubmit').onclick = submitApply;
+  }
+  async function submitApply() {
+    const name = $('appName').value.trim();
+    const email = $('appEmail').value.trim();
+    const note = $('appNote').value.trim();
+    const phone = fee > 0 ? $('appPhone').value.trim() : '';
+    const msg = $('appMsg');
+    msg.innerHTML = '';
+    if (!name || !email) { msg.innerHTML = '<div class="notice err">Add your name and email so they can reach you.</div>'; return; }
+    if (fee > 0 && !phone) { msg.innerHTML = '<div class="notice err">Add the M-Pesa number to pay from.</div>'; return; }
+    const btn = $('appSubmit');
+    btn.disabled = true; btn.textContent = fee > 0 ? 'Requesting payment…' : 'Sending…';
+    try {
+      const data = await api('/jobs/' + encodeURIComponent(job.id) + '/apply', { method: 'POST', body: { name, email, note, phone } });
+      if (data.pendingPayment) {
+        showAwaitingPayment(data.checkoutRequestId, data.message, phone);
+      } else {
+        $('applySection').innerHTML = '<div class="notice ok" style="margin:0;">' + esc(data.message || 'Application sent.') + ' You can track it on your profile.</div>';
+        markApplied();
+        refreshProfileCounts();
+      }
+    } catch (e) {
+      msg.innerHTML = '<div class="notice err">' + esc(e.message) + '</div>';
+      btn.disabled = false; btn.textContent = fee > 0 ? 'Pay KES ' + fee + ' & apply' : 'Submit application';
+    }
+  }
+  function markApplied() {
+    const open = $('applyOpen');
+    open.textContent = 'Applied ✓'; open.disabled = true;
+  }
+  function showAwaitingPayment(checkoutRequestId, message, phone) {
+    $('applySection').innerHTML =
+      '<h2>Complete payment on your phone</h2>' +
+      '<div class="loading" style="justify-content:flex-start;padding:16px 0;"><div class="spinner"></div>' + esc(message) + '</div>' +
+      '<p class="muted">Sent to ' + esc(phone) + ' — this can take up to a minute. Keep this page open.</p>';
+    pollPayment(checkoutRequestId, job.id);
+  }
+  async function pollPayment(checkoutRequestId, jobId, attempt) {
+    attempt = attempt || 0;
+    if (attempt >= 40) {
+      $('applySection').innerHTML = '<div class="notice err">Still waiting on M-Pesa — if you entered your PIN, it may yet confirm; otherwise try applying again.</div>';
+      return;
+    }
+    try {
+      const data = await api('/payments/' + encodeURIComponent(checkoutRequestId));
+      if (data.status === 'paid') {
+        $('applySection').innerHTML = '<div class="notice ok" style="margin:0;">Payment confirmed — application sent to ' + esc(job.company) + '. You can track it on your profile.</div>';
+        markApplied();
+        refreshProfileCounts();
+        return;
+      }
+      if (data.status === 'failed') {
+        $('applySection').innerHTML = '<div class="notice err">' + esc(data.message) + '</div><button class="btn btn-outline" id="appRetry" style="margin-top:12px;">Try again</button>';
+        $('appRetry').onclick = renderApplyForm;
+        return;
+      }
+    } catch (e) { /* transient — keep polling */ }
+    setTimeout(() => pollPayment(checkoutRequestId, jobId, attempt + 1), 3000);
+  }
+
+  $('applyOpen').onclick = () => {
+    renderApplyForm();
+    $('applySection').classList.remove('hidden');
+    $('applySection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  const others = Object.values(jobIndex).filter((j) => j.id !== job.id)
+    .sort((a, b) => (b.category === job.category) - (a.category === job.category)).slice(0, 4);
+  $('detailSide').innerHTML = others.length
+    ? '<div class="card"><div class="card-head"><h2 style="font-size:16px;">Similar jobs</h2></div>' + others.map((j) => jobItemHtml(j, false)).join('') + '</div>'
+    : '';
+  go('details');
+}
+
+/* ---------- profile ---------- */
+async function loadProfile() {
+  fillUser();
+  try { profileData = await api('/profile'); } catch (e) { toast(e.message); }
+  fillCounts();
+  indexJobs(profileData.postedJobs);
+  $('postedList').innerHTML = profileData.postedJobs.length
+    ? profileData.postedJobs.map((j) => simpleRowHtml(j.id, j.title, j.company, j.location + (ago(j.created_at) ? ' · posted ' + ago(j.created_at) : ''))).join('')
+    : '<div class="empty">You haven’t posted any jobs yet.</div>';
+  $('appsList').innerHTML = profileData.applications.length
+    ? profileData.applications.map((a) => simpleRowHtml(a.job_id, a.job_title, a.company, 'Applied ' + (ago(a.created_at) || 'just now'))).join('')
+    : '<div class="empty">No applications yet — find something on the Jobs page.</div>';
+}
+
+/* ---------- modals ---------- */
+const openModal = (id) => $(id).classList.add('open');
+const closeModal = (id) => $(id).classList.remove('open');
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') document.querySelectorAll('.overlay.open').forEach((o) => o.classList.remove('open'));
+});
+document.querySelectorAll('.overlay').forEach((o) => o.addEventListener('mousedown', (e) => { if (e.target === o) o.classList.remove('open'); }));
+
+CATEGORIES.forEach((c) => {
+  const o = document.createElement('option');
+  o.value = c.id; o.textContent = c.label;
+  $('pCategory').appendChild(o);
+});
+function openPost() {
+  $('postError').classList.add('hidden');
+  openModal('postOverlay');
+}
+$('submitPost').onclick = async () => {
+  const body = {
+    title: $('pTitle').value.trim(), company: $('pCompany').value.trim(), location: $('pLocation').value.trim(),
+    category: $('pCategory').value, pay: $('pPay').value.trim(), description: $('pDesc').value.trim(),
+  };
+  const err = $('postError');
+  if (!body.title || !body.company || !body.location) {
+    err.textContent = 'Add at least a title, company and location.'; err.classList.remove('hidden'); return;
+  }
+  err.classList.add('hidden');
+  const btn = $('submitPost');
+  btn.disabled = true; btn.textContent = 'Posting…';
+  try {
+    const job = await api('/jobs', { method: 'POST', body });
+    indexJobs([job]);
+    closeModal('postOverlay');
+    ['pTitle', 'pCompany', 'pLocation', 'pPay', 'pDesc'].forEach((id) => { $(id).value = ''; });
+    toast('Your job is live');
+    if (currentScreen === 'home') loadHome();
+    else if (currentScreen === 'jobs') fetchJobs();
+    else if (currentScreen === 'profile') loadProfile();
+    else refreshProfileCounts();
+  } catch (e) {
+    err.textContent = e.message; err.classList.remove('hidden');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Post job';
+  }
+};
+
+/* AI CV builder */
+let lastCv = '';
+function setCvState(state) {
+  $('cvForm').classList.toggle('hidden', state !== 'form');
+  $('cvLoading').classList.toggle('hidden', state !== 'loading');
+  $('cvResult').classList.toggle('hidden', state !== 'result');
+  $('cvFootForm').classList.toggle('hidden', state !== 'form');
+  $('cvFootResult').classList.toggle('hidden', state !== 'result');
+}
+function openCv() {
+  setCvState('form');
+  $('cvError').classList.add('hidden');
+  $('previewNote').classList.toggle('hidden', !PREVIEW);
+  if (!$('cvName').value && currentUser) $('cvName').value = currentUser.name;
+  openModal('cvOverlay');
+}
+$('cvGenerate').onclick = async () => {
+  const body = {
+    name: $('cvName').value.trim(), targetRole: $('cvRole').value.trim(), experience: $('cvExperience').value.trim(),
+    education: $('cvEducation').value.trim(), skills: $('cvSkills').value.trim(), notes: $('cvNotes').value.trim(),
+  };
+  const err = $('cvError');
+  if (!body.name || !body.targetRole || !body.experience) {
+    err.textContent = 'Add your name, target role, and a little about your work experience.'; err.classList.remove('hidden'); return;
+  }
+  err.classList.add('hidden');
+  setCvState('loading');
+  try {
+    const data = await api('/cv/generate', { method: 'POST', body });
+    lastCv = data.resume;
+    $('cvResultText').textContent = lastCv;
+    setCvState('result');
+  } catch (e) {
+    setCvState('form');
+    err.textContent = e.message; err.classList.remove('hidden');
+  }
+};
+$('cvBack').onclick = () => setCvState('form');
+$('cvCopy').onclick = () => {
+  const done = () => { $('cvCopy').textContent = 'Copied!'; setTimeout(() => { $('cvCopy').textContent = 'Copy text'; }, 1500); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(lastCv).then(done, () => toast('Copy failed — select the text manually.'));
+  else toast('Copy is not available here — select the text manually.');
+};
+$('cvDownload').onclick = () => {
+  const url = URL.createObjectURL(new Blob([lastCv], { type: 'text/plain' }));
+  const a = document.createElement('a');
+  a.href = url; a.download = 'cv.txt';
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+};
+
+/* ---------- global events ---------- */
+const ACTIONS = { post: openPost, cv: openCv, logout: () => logout() };
+document.addEventListener('click', (e) => {
+  const t = e.target;
+  const item = t.closest('.job-item');
+  if (item) { openJobById(item.dataset.id); return; }
+  const closeBtn = t.closest('[data-close]');
+  if (closeBtn) { closeModal(closeBtn.dataset.close); return; }
+  const filter = t.closest('[data-filter]');
+  if (filter) { activeFilter = filter.dataset.filter || null; fetchJobs(); return; }
+  const act = t.closest('[data-act]');
+  if (act && ACTIONS[act.dataset.act]) { ACTIONS[act.dataset.act](); return; }
+  const auth = t.closest('[data-auth]');
+  if (auth) { setAuthMode(auth.dataset.auth); go('auth'); return; }
+  const nav = t.closest('[data-go]');
+  if (nav) go(nav.dataset.go);
+});
+$('navSearch').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { query = e.target.value; go('jobs'); }
+});
+$('clearQuery').onclick = () => { query = ''; $('navSearch').value = ''; fetchJobs(); };
+$('authSubmit').onclick = submitAuth;
+$('authAltBtn').onclick = () => setAuthMode(authMode === 'login' ? 'register' : 'login');
+function showVerifyMsg(kind, text) {
+  const el = $('verifyMsg');
+  el.className = 'notice ' + kind;
+  el.textContent = text;
+  el.classList.remove('hidden');
+}
+$('resendVerify').onclick = async () => {
+  const btn = $('resendVerify');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    const data = await api('/auth/resend-verification', { method: 'POST' });
+    showVerifyMsg('ok', data.message);
+  } catch (e) {
+    showVerifyMsg('err', e.message);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Resend verification email';
+  }
+};
+$('verifyCheck').onclick = async () => {
+  const btn = $('verifyCheck');
+  btn.disabled = true; btn.textContent = 'Checking…';
+  try {
+    currentUser = (await api('/auth/me')).user;
+    fillUser();
+    if (currentUser.emailVerified) { toast('Email verified!'); go('home'); }
+    else showVerifyMsg('warn', 'Still not verified — check your inbox (and spam folder) for the link.');
+  } catch (e) {
+    showVerifyMsg('err', e.message);
+  } finally {
+    btn.disabled = false; btn.textContent = "I've verified — refresh";
+  }
+};
+['authName', 'authEmail', 'authPass'].forEach((id) => $(id).addEventListener('keydown', (e) => { if (e.key === 'Enter') submitAuth(); }));
+
+/* ---------- boot ---------- */
+async function boot() {
+  $('previewBar').classList.toggle('hidden', !PREVIEW);
+  renderBusiness();
+  setAuthMode('login');
+  try { appConfig = await api('/config'); } catch (e) { /* keep default (free applying) */ }
+  if (appConfig.applicationFeeKes > 0) $('feeNote').textContent = 'Applying to a job costs KES ' + appConfig.applicationFeeKes + ', paid via M-Pesa.';
+  if (token) {
+    try { currentUser = (await api('/auth/me')).user; fillUser(); }
+    catch (e) { setToken(null); currentUser = null; }
+  }
+  go(currentUser ? 'home' : 'welcome');
+}
+boot();
+</script>
+</body>
+</html>
