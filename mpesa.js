@@ -1,81 +1,55 @@
-// Minimal client for Safaricom's Daraja API — just what Bazzo needs:
-// an OAuth token and STK Push (charge the applicant). The fee lands directly
-// in the account behind MPESA_SHORTCODE — no separate payout step.
-// Docs: https://developer.safaricom.co.ke
+const express = require('express');
+const { pool } = require('../db');
+const notify = require('../services/notify');
 
-const BASE_URL = process.env.MPESA_ENV === 'production'
-  ? 'https://api.safaricom.co.ke'
-  : 'https://sandbox.safaricom.co.ke';
+const router = express.Router();
 
-function isConfigured() {
-  return !!(process.env.MPESA_CONSUMER_KEY && process.env.MPESA_CONSUMER_SECRET && process.env.MPESA_SHORTCODE && process.env.MPESA_PASSKEY);
-}
+// POST /api/mpesa/stk-callback — Safaricom calls this after the applicant
+// enters (or cancels) their M-Pesa PIN. No auth: Safaricom can't send our JWT.
+// We always respond 200 so Safaricom doesn't retry forever; the real outcome
+// is recorded in the `payments` table either way.
+router.post('/stk-callback', async (req, res) => {
+  res.json({ ResultCode: 0, ResultDesc: 'Received' }); // ack first, Safaricom expects this fast
+  try {
+    const cb = req.body && req.body.Body && req.body.Body.stkCallback;
+    if (!cb || !cb.CheckoutRequestID) return;
 
-// Accepts 07.., 01.., 2547.., 2541.., or +254... and returns the 2547XXXXXXXX
-// format Safaricom's APIs require. Throws on anything that doesn't look Kenyan.
-function normalizePhone(input) {
-  let p = String(input || '').replace(/[^\d]/g, '');
-  if (p.startsWith('0') && p.length === 10) p = '254' + p.slice(1);
-  else if (p.startsWith('254') && p.length === 12) { /* already correct */ }
-  else if ((p.startsWith('7') || p.startsWith('1')) && p.length === 9) p = '254' + p;
-  else throw new Error('Enter a valid Kenyan phone number, e.g. 0712345678.');
-  if (!/^254[17]\d{8}$/.test(p)) throw new Error('Enter a valid Kenyan phone number, e.g. 0712345678.');
-  return p;
-}
+    const payment = await pool.query('SELECT * FROM payments WHERE checkout_request_id = $1', [cb.CheckoutRequestID]);
+    if (!payment.rows.length) return console.error('STK callback for unknown payment:', cb.CheckoutRequestID);
+    const p = payment.rows[0];
+    if (p.status !== 'pending') return; // already handled — Safaricom can resend callbacks
 
-function timestamp() {
-  const d = new Date();
-  const pad = (n) => String(n).padStart(2, '0');
-  return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
-}
+    if (cb.ResultCode !== 0) {
+      await pool.query(`UPDATE payments SET status = 'failed', result_desc = $2, updated_at = now() WHERE id = $1`, [p.id, cb.ResultDesc || 'Payment failed.']);
+      return;
+    }
 
-let cachedToken = null; // { token, expiresAt }
-async function getAccessToken() {
-  if (cachedToken && cachedToken.expiresAt > Date.now() + 5000) return cachedToken.token;
+    const items = (cb.CallbackMetadata && cb.CallbackMetadata.Item) || [];
+    const get = (name) => { const it = items.find((i) => i.Name === name); return it ? it.Value : null; };
+    const receipt = get('MpesaReceiptNumber');
 
-  const auth = Buffer.from(`${process.env.MPESA_CONSUMER_KEY}:${process.env.MPESA_CONSUMER_SECRET}`).toString('base64');
-  const res = await fetch(`${BASE_URL}/oauth/v1/generate?grant_type=client_credentials`, {
-    headers: { Authorization: `Basic ${auth}` },
-  });
-  if (!res.ok) throw new Error('Could not authenticate with M-Pesa (check MPESA_CONSUMER_KEY/SECRET).');
-  const data = await res.json();
-  cachedToken = { token: data.access_token, expiresAt: Date.now() + (Number(data.expires_in) || 3600) * 1000 };
-  return cachedToken.token;
-}
+    const app = await pool.query(
+      `INSERT INTO applications (job_id, name, email, note, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING id`,
+      [p.job_id, p.pending_name, p.pending_email, p.pending_note, p.user_id]
+    );
+    await pool.query(
+      `UPDATE payments SET status = 'paid', mpesa_receipt = $2, application_id = $3, result_desc = $4, updated_at = now() WHERE id = $1`,
+      [p.id, receipt, app.rows[0].id, cb.ResultDesc || 'Paid']
+    );
+    // The full fee was paid straight into MPESA_SHORTCODE — no separate payout step.
 
-// Prompts the payer's phone for their M-Pesa PIN. Result arrives later via the
-// callback URL, not in this response — this response only confirms the prompt was sent.
-async function stkPush({ phone, amount, accountRef, description }) {
-  const shortcode = process.env.MPESA_SHORTCODE;
-  const passkey = process.env.MPESA_PASSKEY;
-  const ts = timestamp();
-  const password = Buffer.from(shortcode + passkey + ts).toString('base64');
-  const token = await getAccessToken();
-  const callbackBase = (process.env.MPESA_CALLBACK_BASE_URL || '').replace(/\/$/, '');
-  if (!callbackBase) throw new Error('MPESA_CALLBACK_BASE_URL is not set — Safaricom needs a public URL to call back.');
-
-  const res = await fetch(`${BASE_URL}/mpesa/stkpush/v1/processrequest`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      BusinessShortCode: shortcode,
-      Password: password,
-      Timestamp: ts,
-      TransactionType: 'CustomerPayBillOnline',
-      Amount: Math.round(amount),
-      PartyA: phone,
-      PartyB: shortcode,
-      PhoneNumber: phone,
-      CallBackURL: `${callbackBase}/api/mpesa/stk-callback`,
-      AccountReference: accountRef.slice(0, 12),
-      TransactionDesc: description.slice(0, 13),
-    }),
-  });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok || data.ResponseCode !== '0') {
-    throw new Error(data.errorMessage || data.ResponseDescription || 'M-Pesa did not accept the payment request.');
+    // Tell the owner it happened — fire-and-forget, never blocks confirming the payment itself.
+    const job = await pool.query('SELECT title, company FROM jobs WHERE id = $1', [p.job_id]);
+    notify.notifyOwnerOfPayment({
+      jobTitle: job.rows[0] ? job.rows[0].title : 'a job',
+      company: job.rows[0] ? job.rows[0].company : '',
+      amount: p.amount,
+      payerPhone: p.phone,
+      receipt,
+    }).catch((e) => console.error('Owner notification error:', e.message));
+  } catch (err) {
+    console.error('Error handling STK callback:', err);
   }
-  return data; // { MerchantRequestID, CheckoutRequestID, ... }
-}
+});
 
-module.exports = { isConfigured, normalizePhone, stkPush };
+module.exports = router;
